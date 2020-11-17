@@ -8,19 +8,19 @@
 namespace towr {
 
 /**
- * @brief The Kinematics of Talos (TODO: Real values)
+ * @brief The Kinematics of Talos
  */
 class TalosKinematicModel : public KinematicModel {
 public:
   TalosKinematicModel () : KinematicModel(2)
   {
-    const double z_nominal_b = -0.7;
-    const double y_nominal_b =  0.20;
+    const double z_nominal_b = -1.0;
+    const double y_nominal_b =  0.10;
 
     nominal_stance_.at(L) << 0.0,  y_nominal_b, z_nominal_b;
     nominal_stance_.at(R) << 0.0, -y_nominal_b, z_nominal_b;
 
-    max_dev_from_nominal_  << 0.25, 0.15, 0.15;
+    max_dev_from_nominal_  << 0.25, 0.15, 0.10;
   }
 };
 
@@ -30,9 +30,10 @@ public:
 class TalosDynamicModel : public SingleRigidBodyDynamics {
 public:
   TalosDynamicModel()
-  : SingleRigidBodyDynamics(20,
-                    1.209,5.583,6.056,0.005,-0.190,-0.012,
-                    2) {}
+  : SingleRigidBodyDynamics(93.3357,
+			    18.581, 15.4115, 4.08092,
+			    -0.0081011, -0.0267051, 0.0579719, 
+			    2) {}
 };
 
 } /* namespace towr */
