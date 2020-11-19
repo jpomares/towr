@@ -20,12 +20,12 @@ public:
     nominal_stance_.at(L) << 0.0,  y_nominal_b, z_nominal_b;
     nominal_stance_.at(R) << 0.0, -y_nominal_b, z_nominal_b;
 
-    max_dev_from_nominal_  << 0.25, 0.15, 0.10;
+    max_dev_from_nominal_  << 0.18, 0.10, 0.060;
   }
 };
 
 /**
- * @brief The Dynamics of a Talos (TODO: Real values, Dynamics of legs)
+ * @brief The Dynamics of a Talos
  */
 class TalosDynamicModel : public SingleRigidBodyDynamics {
 public:
