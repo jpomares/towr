@@ -14,7 +14,7 @@ class TalosKinematicModel : public KinematicModel {
 public:
   TalosKinematicModel () : KinematicModel(2)
   {
-    const double z_nominal_b = -1.0;
+    const double z_nominal_b = -0.9;
     const double y_nominal_b =  0.10;
 
     nominal_stance_.at(L) << 0.0,  y_nominal_b, z_nominal_b;
