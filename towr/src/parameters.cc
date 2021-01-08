@@ -55,6 +55,7 @@ Parameters::Parameters ()
   constraints_.push_back(Terrain);
   constraints_.push_back(Dynamic); //Ensures that the dynamic model is fullfilled at discrete times.
   constraints_.push_back(BaseAcc); // so accelerations don't jump between polynomials
+  constraints_.push_back(BaseRom);
   constraints_.push_back(EndeffectorRom); //Ensures that the range of motion is respected at discrete times.
   constraints_.push_back(Force); // ensures unilateral forces and inside the friction cone.
   constraints_.push_back(Swing); // creates smoother swing motions, not absolutely required.
@@ -63,7 +64,7 @@ Parameters::Parameters ()
   // costs_.push_back({ForcesCostID, 1.0}); weighed by 1.0 relative to other costs
 
   // bounds on final 6DoF base state
-  bounds_final_lin_pos_ = {X,Y};
+  bounds_final_lin_pos_ = {X,Y,Z};
   bounds_final_lin_vel_ = {X,Y,Z};
   bounds_final_ang_pos_ = {X,Y,Z};
   bounds_final_ang_vel_ = {X,Y,Z};
