@@ -14,11 +14,12 @@ class TalosKinematicModel : public KinematicModel {
 public:
   TalosKinematicModel () : KinematicModel(2)
   {
-    const double z_nominal_b = -0.9;
-    const double y_nominal_b =  0.10;
+    const double z_nominal_b = -0.1;
+    const double y_nominal_b =  0.3;
+    const double x_nominal_b =  0.15;
 
-    nominal_stance_.at(L) << 0.0,  y_nominal_b, z_nominal_b;
-    nominal_stance_.at(R) << 0.0, -y_nominal_b, z_nominal_b;
+    nominal_stance_.at(L) << x_nominal_b,  y_nominal_b, z_nominal_b;
+    nominal_stance_.at(R) << x_nominal_b, -y_nominal_b, z_nominal_b;
 
     max_dev_from_nominal_  << 0.18, 0.10, 0.060;
   }
