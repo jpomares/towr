@@ -31,10 +31,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 namespace towr {
 
-DynamicModel::DynamicModel(double mass, int ee_count)
+  DynamicModel::DynamicModel(double mass, int ee_count, double g)
 {
   m_ = mass;
-  g_ = 9.80665;
+  // g_ = 9.80665;
+  g_ = g;
 
   com_pos_.setZero();
   com_acc_.setZero();

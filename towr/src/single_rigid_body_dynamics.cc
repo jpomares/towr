@@ -59,16 +59,16 @@ Cross(const Eigen::Vector3d& in)
 SingleRigidBodyDynamics::SingleRigidBodyDynamics (double mass,
                                   double Ixx, double Iyy, double Izz,
                                   double Ixy, double Ixz, double Iyz,
-                                  int ee_count)
+						  int ee_count, double g)
    : SingleRigidBodyDynamics(mass,
                      BuildInertiaTensor(Ixx, Iyy, Izz, Ixy, Ixz, Iyz),
-                     ee_count)
+			     ee_count, g)
 {
 }
 
 SingleRigidBodyDynamics::SingleRigidBodyDynamics (double mass, const Eigen::Matrix3d& inertia_b,
-                                  int ee_count)
-    :DynamicModel(mass, ee_count)
+						  int ee_count, double g)
+  :DynamicModel(mass, ee_count, g)
 {
   I_b = inertia_b.sparseView();
 }

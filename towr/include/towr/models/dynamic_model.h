@@ -168,7 +168,7 @@ protected:
    * @brief Construct a dynamic object. Protected as this is abstract base class.
    * @param mass The mass of the system.
    */
-  DynamicModel(double mass, int ee_count);
+  DynamicModel(double mass, int ee_count, double g = 9.80665);
   virtual ~DynamicModel () = default;
 
 private:

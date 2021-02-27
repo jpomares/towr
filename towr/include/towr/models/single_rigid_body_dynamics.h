@@ -63,7 +63,8 @@ public:
    *                     This matrix maps angular accelerations expressed in
    *                     base frame to moments in base frame.
    */
-  SingleRigidBodyDynamics (double mass, const Eigen::Matrix3d& inertia_b, int ee_count);
+  SingleRigidBodyDynamics(double mass, const Eigen::Matrix3d &inertia_b,
+			  int ee_count, double g = 9.80665);
 
   /**
    * @brief Constructs a specific model.
@@ -71,22 +72,21 @@ public:
    * @param I..       Elements of the 3x3 Inertia matrix
    * @param ee_count  Number of endeffectors/forces.
    */
-  SingleRigidBodyDynamics (double mass,
-                   double Ixx, double Iyy, double Izz,
-                   double Ixy, double Ixz, double Iyz,
-                   int ee_count);
+  SingleRigidBodyDynamics(double mass, double Ixx, double Iyy, double Izz,
+			  double Ixy, double Ixz, double Iyz, int ee_count,
+			  double g = 9.80665);
 
-  virtual ~SingleRigidBodyDynamics () = default;
+  virtual ~SingleRigidBodyDynamics() = default;
 
   BaseAcc GetDynamicViolation() const override;
 
-  Jac GetJacobianWrtBaseLin(const Jac& jac_base_lin_pos,
-                            const Jac& jac_acc_base_lin) const override;
-  Jac GetJacobianWrtBaseAng(const EulerConverter& base_angular,
-                            double t) const override;
-  Jac GetJacobianWrtForce(const Jac& jac_force, EE) const override;
+  Jac GetJacobianWrtBaseLin(const Jac &jac_base_lin_pos,
+			    const Jac &jac_acc_base_lin) const override;
+  Jac GetJacobianWrtBaseAng(const EulerConverter &base_angular,
+			    double t) const override;
+  Jac GetJacobianWrtForce(const Jac &jac_force, EE) const override;
 
-  Jac GetJacobianWrtEEPos(const Jac& jac_ee_pos, EE) const override;
+  Jac GetJacobianWrtEEPos(const Jac &jac_ee_pos, EE) const override;
 
 private:
   /** Inertia of entire robot around the CoM expressed in a frame anchored
@@ -94,7 +94,6 @@ private:
    */
   Eigen::SparseMatrix<double, Eigen::RowMajor> I_b;
 };
-
 
 } /* namespace towr */
 

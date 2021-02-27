@@ -54,8 +54,11 @@ public:
                   [&](Vector3d& p){ p.z() = z_ground; } // feet at 0 height
     );
 
-    formulation_.initial_base_.lin.at(kPos).z() = - nominal_stance_B.front().z() + z_ground;
-    formulation_.final_base_.lin.at(kPos).z() = - nominal_stance_B.front().z() + z_ground;
+    formulation_.initial_base_.lin.at(kPos).z() = 0.4 + z_ground;
+    formulation_.final_base_.lin.at(kPos).z() = 0.4 + z_ground;
+
+    formulation_.initial_base_.ang.at(kPos).y() = M_PI / 2.0;
+    formulation_.final_base_.ang.at(kPos).y() = M_PI / 2.0;
   }
 
   /**
@@ -77,7 +80,6 @@ public:
     }
 
     // Here you can also add other constraints or change parameters
-    // params.constraints_.push_back(Parameters::BaseRom);
 
     // increases optimization time, but sometimes helps find a solution for
     // more difficult terrain.
