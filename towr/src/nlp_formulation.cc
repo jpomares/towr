@@ -356,8 +356,11 @@ NlpFormulation::MakeForcesCost(double weight) const
 {
   CostPtrVec cost;
 
-  for (int ee=0; ee<params_.GetEECount(); ee++)
-    cost.push_back(std::make_shared<NodeCost>(id::EEForceNodes(ee), kPos, Z, weight));
+  for (int ee=0; ee<params_.GetEECount(); ee++) {
+    cost.push_back(std::make_shared<NodeCost>(id::EEForceNodes(ee), kPos, X, weight));
+    // cost.push_back(std::make_shared<NodeCost>(id::EEForceNodes(ee), kPos, Y, weight));
+    // cost.push_back(std::make_shared<NodeCost>(id::EEForceNodes(ee), kPos, Z, weight));
+  }
 
   return cost;
 }
@@ -367,19 +370,21 @@ NlpFormulation::MakeEEMotionCost(double weight) const
 {
   CostPtrVec cost;
 
-  // for (int ee=0; ee<params_.GetEECount(); ee++) {
-    // cost.push_back(std::make_shared<NodeCost>(id::EEMotionNodes(ee), kVel, X, weight));
-    // cost.push_back(std::make_shared<NodeCost>(id::EEMotionNodes(ee), kVel, Y, weight));
-  // }
+  for (int ee=0; ee<params_.GetEECount(); ee++) {
+    cost.push_back(std::make_shared<NodeCost>(id::EEMotionNodes(ee), kVel, X, weight));
+    cost.push_back(std::make_shared<NodeCost>(id::EEMotionNodes(ee), kVel, Y, weight));
+    cost.push_back(std::make_shared<NodeCost>(id::EEMotionNodes(ee), kVel, Z, weight));
+  }
 
-  cost.push_back(
-      std::make_shared<NodeCost>(id::base_lin_nodes, kVel, X, weight));
-  cost.push_back(
-      std::make_shared<NodeCost>(id::base_lin_nodes, kVel, Y, weight));
-  cost.push_back(
-      std::make_shared<NodeCost>(id::base_lin_nodes, kVel, Z, 2 * weight));
-  cost.push_back(
-      std::make_shared<NodeCost>(id::base_lin_nodes, kAcc, Z, weight));
+  // COSTE AL MOVIMIENTO DE LA BASE!!!
+  // cost.push_back(
+  //     std::make_shared<NodeCost>(id::base_lin_nodes, kVel, X, weight));
+  // cost.push_back(
+  //     std::make_shared<NodeCost>(id::base_lin_nodes, kVel, Y, weight));
+  // cost.push_back(
+  //     std::make_shared<NodeCost>(id::base_lin_nodes, kVel, Z, 2 * weight));
+  // cost.push_back(
+  //     std::make_shared<NodeCost>(id::base_lin_nodes, kAcc, Z, weight));
 
   return cost;
 }
