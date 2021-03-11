@@ -89,7 +89,6 @@ target_link_libraries(rviz_terrain_publisher
   ${catkin_LIBRARIES}
 )
 
-
 # Display goal pose in rviz
 add_executable(goal_pose_publisher 
   src/goal_pose_publisher.cc
@@ -98,6 +97,17 @@ add_dependencies(goal_pose_publisher
   ${PROJECT_NAME}_gencpp
 ) 
 target_link_libraries(goal_pose_publisher
+  ${catkin_LIBRARIES}
+)
+
+# Display the handles positions in rviz
+add_executable(rviz_handles_publisher
+  src/rviz_handles_publisher.cc
+)
+add_dependencies(rviz_handles_publisher
+  ${PROJECT_NAME}_gencpp
+)
+target_link_libraries(rviz_handles_publisher
   ${catkin_LIBRARIES}
 )
 

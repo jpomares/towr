@@ -78,6 +78,11 @@ TowrUserInterface::TowrUserInterface ()
   publish_optimized_trajectory_ = false;
   optimize_phase_durations_ = false;
 
+  // Initialize handle positions and orientations
+  handles_.resize(2);
+  handles_[0].lin.p_ << 1.0, -0.3, 0.0;
+  handles_[1].lin.p_ << 1.0,  0.3, 0.0;
+
   PrintScreen();
 }
 
@@ -309,6 +314,16 @@ void TowrUserInterface::PublishCommand()
   msg.optimize_phase_durations = optimize_phase_durations_;
   msg.plot_trajectory          = plot_trajectory_;
 
+  // Create handle state3d vector
+  std::vector<xpp_msgs::StateLin3d> handle_lin;
+  std::vector<xpp_msgs::StateLin3d> handle_ang;
+  for (const auto& handle : handles_) {
+    handle_lin.emplace_back(xpp::Convert::ToRos(handle.lin));
+    handle_ang.emplace_back(xpp::Convert::ToRos(handle.ang));
+  }
+  msg.handle_lin = handle_lin;
+  msg.handle_ang = handle_ang;
+  
   user_command_pub_.publish(msg);
 
   PrintScreen();

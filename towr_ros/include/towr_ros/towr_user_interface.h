@@ -33,6 +33,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <ros/ros.h>
 
 #include <xpp_states/state.h>
+#include <xpp_msgs/StateLin3d.h>
 
 namespace towr {
 
@@ -59,7 +60,6 @@ public:
 private:
   ::ros::Publisher  user_command_pub_; ///< the output message to TOWR.
 
-
   void PublishCommand();
 
   xpp::State3dEuler goal_geom_;
@@ -74,6 +74,9 @@ private:
   bool publish_optimized_trajectory_;
   double total_duration_;
   bool optimize_phase_durations_;
+
+  // Handle positions and orientations
+  std::vector<xpp::State3dEuler> handles_;
 
   int AdvanceCircularBuffer(int& curr, int max) const;
 

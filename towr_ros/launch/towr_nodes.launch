@@ -21,6 +21,16 @@
     >
   </node>
   
+  <!-- draw the handles in RVIZ -->
+  <node 
+    name="rviz_handles_publisher" 
+    pkg="towr_ros" 
+    type="rviz_handles_publisher" 
+    output="screen"
+    launch-prefix="$(arg gdb)"
+    >
+  </node>
+  
   <!--  visualize the goal pose in RVIZ -->
   <node 
     name="goal_pose_publisher" 
