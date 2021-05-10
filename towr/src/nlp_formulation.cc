@@ -372,14 +372,14 @@ NlpFormulation::MakeEEMotionCost(double weight) const
     // cost.push_back(std::make_shared<NodeCost>(id::EEMotionNodes(ee), kVel, Y, weight));
   // }
 
-  cost.push_back(
-      std::make_shared<NodeCost>(id::base_lin_nodes, kVel, X, weight));
-  cost.push_back(
-      std::make_shared<NodeCost>(id::base_lin_nodes, kVel, Y, weight));
-  cost.push_back(
-      std::make_shared<NodeCost>(id::base_lin_nodes, kVel, Z, 2 * weight));
-  cost.push_back(
-      std::make_shared<NodeCost>(id::base_lin_nodes, kAcc, Z, weight));
+  // cost.push_back(
+  //     std::make_shared<NodeCost>(id::base_lin_nodes, kVel, X, weight));
+  // cost.push_back(
+  //     std::make_shared<NodeCost>(id::base_lin_nodes, kVel, Y, weight));
+  cost.push_back(std::make_shared<NodeCost>(id::base_lin_nodes, kVel, Z, weight));
+  // cost.push_back(
+  //     std::make_shared<NodeCost>(id::base_lin_nodes, kAcc, Z, weight));
+  // cost.push_back(std::make_shared<NodeCost>(id::base_ang_nodes, kPos, Z, weight));
 
   return cost;
 }
