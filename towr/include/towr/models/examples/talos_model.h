@@ -31,8 +31,8 @@ class TalosDynamicModel : public SingleRigidBodyDynamics {
 public:
   TalosDynamicModel()
   : SingleRigidBodyDynamics(93.3357,
-			    18.581, 15.4115, 4.08092,
-			    -0.0081011, -0.0267051, 0.0579719, 
+			    15.4261, 12.6152, 4.54076,
+			    -0.00456485, 1.27926, 0.0611941, 
 			    2) {}
 };
 
